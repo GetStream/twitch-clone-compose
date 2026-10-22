@@ -20,7 +20,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
-import io.getstream.chat.android.compose.ui.theme.StreamColors
+import io.getstream.chat.android.compose.ui.theme.StreamDesign
 import io.getstream.video.android.compose.theme.VideoTheme
 
 val primaryColor = Color(0xFF6441a5)
@@ -32,14 +32,16 @@ val emojiColor: Color = Color(0xFFF4BC04)
 fun TwitchTheme(
   content: @Composable () -> Unit
 ) {
+  val darkTheme = isSystemInDarkTheme()
   ChatTheme(
-    colors = if (isSystemInDarkTheme()) {
-      StreamColors.defaultDarkColors().copy(
-        primaryAccent = primaryColor
+    isInDarkMode = darkTheme,
+    colors = if (darkTheme) {
+      StreamDesign.Colors.defaultDark().copy(
+        accentPrimary = primaryColor
       )
     } else {
-      StreamColors.defaultColors().copy(
-        primaryAccent = primaryColor
+      StreamDesign.Colors.default().copy(
+        accentPrimary = primaryColor
       )
     }
   ) {

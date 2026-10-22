@@ -46,10 +46,6 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
 
-  kotlinOptions {
-    jvmTarget = libs.versions.jvmTarget.get()
-  }
-
   lint {
     abortOnError = false
   }
@@ -90,7 +86,6 @@ dependencies {
 
   // Stream SDK
   implementation(libs.stream.chat.compose)
-  implementation(libs.stream.chat.offline)
   implementation(libs.stream.video.mock)
 
   // Jetpack

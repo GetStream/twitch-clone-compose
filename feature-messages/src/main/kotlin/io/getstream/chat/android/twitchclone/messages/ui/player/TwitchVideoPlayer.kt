@@ -47,10 +47,10 @@ fun TwitchVideoPlayer(
   Box(
     modifier = modifier
       .clip(shape = videoShape)
-      .background(ChatTheme.colors.appBackground)
+      .background(ChatTheme.colors.backgroundCoreApp)
       .border(
         width = 4.dp,
-        color = ChatTheme.colors.primaryAccent.copy(0.75f),
+        color = ChatTheme.colors.accentPrimary.copy(0.75f),
         shape = videoShape
       )
   ) {
@@ -71,7 +71,7 @@ fun TwitchVideoPlayer(
       Icon(
         painter = painterResource(id = R.drawable.ic_info),
         contentDescription = null,
-        tint = ChatTheme.colors.primaryAccent
+        tint = ChatTheme.colors.accentPrimary
       )
     }
   }

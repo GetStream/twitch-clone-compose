@@ -93,20 +93,20 @@ fun TwitchChannelItem(
         modifier = Modifier
           .padding(vertical = 14.dp, horizontal = 18.dp)
           .background(
-            color = ChatTheme.colors.errorAccent,
+            color = ChatTheme.colors.accentError,
             shape = RoundedCornerShape(4.dp)
           )
           .padding(horizontal = 6.dp)
           .align(Alignment.TopStart),
         text = stringResource(id = R.string.label_live),
-        color = ChatTheme.colors.textHighEmphasis,
+        color = ChatTheme.colors.textPrimary,
         fontSize = 12.sp
       )
     }
 
     ChannelInformation(
       modifier = Modifier
-        .background(ChatTheme.colors.appBackground)
+        .background(ChatTheme.colors.backgroundCoreApp)
         .fillMaxWidth(),
       streamerAvatarImage = channelItemState.channel.streamerAvatarLink,
       streamerName = channelItemState.channel.streamerName,

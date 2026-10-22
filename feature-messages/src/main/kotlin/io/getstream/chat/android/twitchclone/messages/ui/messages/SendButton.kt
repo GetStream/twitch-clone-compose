@@ -45,12 +45,14 @@ fun SendButton(
       enabled = isInputValid,
       content = {
         Icon(
-          painter = painterResource(id = R.drawable.stream_compose_ic_send),
-          contentDescription = stringResource(id = R.string.stream_compose_send_message),
+          painter = painterResource(id = R.drawable.stream_design_ic_send),
+          contentDescription = stringResource(
+            id = R.string.stream_compose_message_composer_send_action
+          ),
           tint = if (isInputValid) {
-            ChatTheme.colors.primaryAccent
+            ChatTheme.colors.accentPrimary
           } else {
-            ChatTheme.colors.textLowEmphasis
+            ChatTheme.colors.textSecondary
           }
         )
       },

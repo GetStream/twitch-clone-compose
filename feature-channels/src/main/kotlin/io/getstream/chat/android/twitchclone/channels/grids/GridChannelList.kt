@@ -42,7 +42,7 @@ import io.getstream.chat.android.compose.ui.components.EmptyContent
 import io.getstream.chat.android.compose.ui.components.LoadingIndicator
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 import io.getstream.chat.android.compose.viewmodel.channels.ChannelListViewModel
-import io.getstream.chat.android.compose.viewmodel.channels.ChannelViewModelFactory
+import io.getstream.chat.android.compose.viewmodel.channels.ChannelListViewModelFactory
 import io.getstream.chat.android.models.Channel
 import io.getstream.chat.android.models.User
 import io.getstream.chat.android.models.querysort.QuerySortByField
@@ -53,7 +53,7 @@ fun GridChannelList(
   contentPadding: PaddingValues = PaddingValues(),
   viewModel: ChannelListViewModel = viewModel(
     factory =
-    ChannelViewModelFactory(
+    ChannelListViewModelFactory(
       ChatClient.instance(),
       QuerySortByField.descByName("last_updated"),
       filters = null
@@ -195,7 +195,7 @@ internal fun DefaultChannelListLoadingIndicator(modifier: Modifier) {
 internal fun DefaultChannelListEmptyContent(modifier: Modifier = Modifier) {
   EmptyContent(
     modifier = modifier,
-    painter = painterResource(id = R.drawable.stream_compose_empty_channels),
+    painter = painterResource(id = R.drawable.stream_design_ic_message_bubbles),
     text = stringResource(R.string.stream_compose_channel_list_empty_channels)
   )
 }
@@ -213,7 +213,7 @@ internal fun DefaultChannelSearchEmptyContent(
 ) {
   EmptyContent(
     modifier = modifier,
-    painter = painterResource(id = R.drawable.stream_compose_empty_search_results),
+    painter = painterResource(id = R.drawable.stream_design_ic_message_bubbles),
     text = stringResource(R.string.stream_compose_channel_list_empty_search_results, searchQuery)
   )
 }
@@ -227,6 +227,6 @@ public fun DefaultChannelItemDivider() {
     modifier = Modifier
       .fillMaxWidth()
       .height(0.5.dp)
-      .background(color = ChatTheme.colors.borders)
+      .background(color = ChatTheme.colors.borderCoreDefault)
   )
 }

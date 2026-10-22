@@ -3,8 +3,9 @@ package io.getstream.chat.android.twitchclone
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 /**
  * Configure base Kotlin with Android options
@@ -13,7 +14,7 @@ internal fun Project.configureKotlinAndroid(
   commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
   commonExtension.apply {
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
       minSdk = 21
@@ -27,12 +28,14 @@ internal fun Project.configureKotlinAndroid(
     lint {
       abortOnError = false
     }
+  }
 
-    kotlinOptions {
+  extensions.configure<KotlinAndroidProjectExtension> {
+    compilerOptions {
       // Treat all Kotlin warnings as errors (disabled by default)
-      allWarningsAsErrors = properties["warningsAsErrors"] as? Boolean ?: false
+      allWarningsAsErrors.set(properties["warningsAsErrors"] as? Boolean ?: false)
 
-      freeCompilerArgs = freeCompilerArgs + listOf(
+      freeCompilerArgs.addAll(
         "-opt-in=kotlin.RequiresOptIn",
         // Enable experimental coroutines APIs, including Flow
         "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
@@ -43,11 +46,7 @@ internal fun Project.configureKotlinAndroid(
       )
 
       // Set JVM target
-      jvmTarget = JavaVersion.VERSION_17.toString()
+      jvmTarget.set(JvmTarget.JVM_17)
     }
   }
-}
-
-fun CommonExtension<*, *, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
-  (this as ExtensionAware).extensions.configure("kotlinOptions", block)
 }

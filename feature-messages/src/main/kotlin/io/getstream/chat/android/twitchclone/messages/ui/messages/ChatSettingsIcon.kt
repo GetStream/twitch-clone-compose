@@ -29,7 +29,7 @@ fun ChatSettingsIcon(onClick: () -> Unit = {}) {
   IconButton(onClick = onClick) {
     Icon(
       painter = painterResource(id = R.drawable.ic_vertical_dots),
-      tint = ChatTheme.colors.textLowEmphasis,
+      tint = ChatTheme.colors.textSecondary,
       contentDescription = stringResource(id = R.string.accessibility_open_chat_settings)
     )
   }

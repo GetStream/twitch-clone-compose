@@ -59,8 +59,8 @@ fun RewardsIntegration(
           .align(Alignment.CenterVertically),
         text = rewardCount.toString(),
         fontSize = TextUnit.Unspecified,
-        color = ChatTheme.colors.textLowEmphasis,
-        style = ChatTheme.typography.bodyBold
+        color = ChatTheme.colors.textSecondary,
+        style = ChatTheme.typography.bodyEmphasis
       )
     }
   }

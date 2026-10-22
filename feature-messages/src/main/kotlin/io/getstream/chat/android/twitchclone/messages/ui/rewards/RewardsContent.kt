@@ -59,7 +59,7 @@ fun RewardsContent(
           .padding(8.dp)
           .weight(0.7f),
         text = stringResource(id = R.string.channel_rewards, channelName),
-        style = ChatTheme.typography.bodyBold
+        style = ChatTheme.typography.bodyEmphasis
       )
 
       Text(

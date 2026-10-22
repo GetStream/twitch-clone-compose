@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -152,7 +153,7 @@ fun TwitchBottomBarContent(
         emotes = emotes,
         cells = GridCells.Fixed(7),
         onEmoteSelected = { emote ->
-          val currentInput = composerViewModel.input.value
+          val currentInput = composerViewModel.messageInput.value.text
           composerViewModel.setMessageInput("$currentInput $emote")
         }
       )
@@ -188,7 +189,7 @@ fun TwitchBottomBar(
   Surface(
     modifier = modifier,
     elevation = 4.dp,
-    color = ChatTheme.colors.barsBackground
+    color = ChatTheme.colors.backgroundCoreSurfaceDefault
   ) {
     Column(
       modifier = Modifier.padding(vertical = 4.dp)
@@ -237,8 +238,8 @@ private fun StitchInput(
 
   BasicTextField(
     modifier = modifier
-      .clip(ChatTheme.shapes.inputField)
-      .background(ChatTheme.colors.inputBackground)
+      .clip(RoundedCornerShape(24.dp))
+      .background(ChatTheme.colors.backgroundCoreSurfaceDefault)
       .padding(8.dp),
     value = state,
     onValueChange = {
@@ -247,11 +248,11 @@ private fun StitchInput(
       }
     },
     singleLine = true,
-    textStyle = ChatTheme.typography.body.copy(
-      color = ChatTheme.colors.textHighEmphasis,
+    textStyle = ChatTheme.typography.bodyDefault.copy(
+      color = ChatTheme.colors.textPrimary,
       textDirection = TextDirection.Content
     ),
-    cursorBrush = SolidColor(ChatTheme.colors.primaryAccent),
+    cursorBrush = SolidColor(ChatTheme.colors.accentPrimary),
     decorationBox = { innerTextField ->
       Row(
         modifier = Modifier.fillMaxWidth(),
@@ -263,7 +264,7 @@ private fun StitchInput(
           if (value.isEmpty()) {
             Text(
               text = stringResource(id = R.string.message_label),
-              color = ChatTheme.colors.textLowEmphasis
+              color = ChatTheme.colors.textSecondary
             )
           }
         }

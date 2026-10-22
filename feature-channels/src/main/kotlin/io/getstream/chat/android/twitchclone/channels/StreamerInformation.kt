@@ -68,9 +68,9 @@ fun StreamerInformation(
       Text(
         modifier = Modifier.wrapContentSize(),
         text = streamerName,
-        style = ChatTheme.typography.bodyBold,
+        style = ChatTheme.typography.bodyEmphasis,
         fontSize = 14.sp,
-        color = ChatTheme.colors.textHighEmphasis,
+        color = ChatTheme.colors.textPrimary,
         fontWeight = FontWeight.Bold
       )
     }

@@ -25,10 +25,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.compose.viewmodel.channels.ChannelListViewModel
-import io.getstream.chat.android.compose.viewmodel.channels.ChannelViewModelFactory
+import io.getstream.chat.android.compose.viewmodel.channels.ChannelListViewModelFactory
+import io.getstream.chat.android.compose.viewmodel.messages.ChannelViewModelFactory
 import io.getstream.chat.android.compose.viewmodel.messages.MessageComposerViewModel
+import io.getstream.chat.android.compose.viewmodel.messages.MessageListOptions
 import io.getstream.chat.android.compose.viewmodel.messages.MessageListViewModel
-import io.getstream.chat.android.compose.viewmodel.messages.MessagesViewModelFactory
 import io.getstream.chat.android.models.Filters
 import io.getstream.chat.android.models.InitializationState
 import io.getstream.chat.android.models.querysort.QuerySortByField
@@ -45,7 +46,7 @@ fun NavGraphBuilder.twitchAppHomeNavigation() {
 
     if (clientInitialisationState == InitializationState.COMPLETE) {
       val factory = remember {
-        ChannelViewModelFactory(
+        ChannelListViewModelFactory(
           chatClient = ChatClient.instance(),
           querySort = QuerySortByField.descByName("last_updated"),
           filters = Filters.eq("type", "livestream")
@@ -68,11 +69,13 @@ fun NavGraphBuilder.twitchAppHomeNavigation() {
 
     val context = LocalContext.current
     val factory = remember {
-      MessagesViewModelFactory(
+      ChannelViewModelFactory(
         context = context,
         channelId = channelId,
-        showDateSeparatorInEmptyThread = false,
-        showSystemMessages = false
+        messageListOptions = MessageListOptions(
+          showDateSeparatorInEmptyThread = false,
+          showSystemMessages = false
+        )
       )
     }
 
@@ -93,11 +96,13 @@ fun NavGraphBuilder.twitchAppHomeNavigation() {
 
     val context = LocalContext.current
     val factory = remember {
-      MessagesViewModelFactory(
+      ChannelViewModelFactory(
         context = context,
         channelId = channelId,
-        showDateSeparatorInEmptyThread = false,
-        showSystemMessages = false
+        messageListOptions = MessageListOptions(
+          showDateSeparatorInEmptyThread = false,
+          showSystemMessages = false
+        )
       )
     }
 
@@ -118,11 +123,13 @@ fun NavGraphBuilder.twitchAppHomeNavigation() {
 
     val context = LocalContext.current
     val factory = remember {
-      MessagesViewModelFactory(
+      ChannelViewModelFactory(
         context = context,
         channelId = channelId,
-        showDateSeparatorInEmptyThread = false,
-        showSystemMessages = false
+        messageListOptions = MessageListOptions(
+          showDateSeparatorInEmptyThread = false,
+          showSystemMessages = false
+        )
       )
     }
 
