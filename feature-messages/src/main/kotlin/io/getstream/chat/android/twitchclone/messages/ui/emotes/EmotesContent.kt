@@ -25,7 +25,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -50,7 +50,7 @@ fun EmotesContent(
             .size(24.dp)
             .align(Alignment.Center)
             .clickable(
-              indication = rememberRipple(bounded = false),
+              indication = ripple(bounded = false),
               interactionSource = remember { MutableInteractionSource() }
             ) {
               val emoteName = emote.split(".")[0]

@@ -1,2 +1,3 @@
 -dontobfuscate
 -dontwarn com.google.errorprone.annotations.InlineMe
+-dontwarn androidx.window.extensions.area.ExtensionWindowAreaPresentation

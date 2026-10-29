@@ -28,8 +28,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,7 +44,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import io.getstream.chat.android.compose.ui.messages.list.MessageList
 import io.getstream.chat.android.compose.ui.messages.list.MessagesLazyListState
+import io.getstream.chat.android.compose.ui.theme.ChatComponentFactory
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
+import io.getstream.chat.android.compose.ui.theme.LocalComponentFactory
+import io.getstream.chat.android.compose.ui.theme.MessageItemParams
 import io.getstream.chat.android.compose.ui.util.rememberMessageListState
 import io.getstream.chat.android.compose.viewmodel.messages.MessageComposerViewModel
 import io.getstream.chat.android.compose.viewmodel.messages.MessageListViewModel
@@ -93,7 +98,7 @@ private fun PortraitTwitchMessage(
   val scope = rememberCoroutineScope()
 
   Scaffold(
-    modifier = Modifier.background(color = ChatTheme.colors.appBackground),
+    modifier = Modifier.background(color = ChatTheme.colors.backgroundCoreApp),
     bottomBar = {
       TwitchBottomBarContent(
         listViewModel = listViewModel,
@@ -107,7 +112,7 @@ private fun PortraitTwitchMessage(
     Column(
       Modifier
         .fillMaxSize()
-        .background(ChatTheme.colors.appBackground)
+        .background(ChatTheme.colors.backgroundCoreApp)
     ) {
       streamRenderer?.invoke() ?: TwitchVideoPlayer(
         modifier = Modifier
@@ -124,7 +129,7 @@ private fun PortraitTwitchMessage(
             .fillMaxWidth()
             .heightIn(min = 54.dp, max = 120.dp)
             .padding(horizontal = 8.dp)
-            .background(ChatTheme.colors.appBackground),
+            .background(ChatTheme.colors.backgroundCoreApp),
           channel = listViewModel.channel
         ) {
           onChannelDescriptionExpanded.invoke(false)
@@ -177,7 +182,7 @@ private fun LandscapeTwitchMessage(
             .padding(6.dp)
             .width(300.dp)
             .heightIn(min = 54.dp, max = 120.dp)
-            .background(ChatTheme.colors.appBackground)
+            .background(ChatTheme.colors.backgroundCoreApp)
             .padding(horizontal = 16.dp, vertical = 6.dp),
           channel = listViewModel.channel
         ) {
@@ -204,7 +209,7 @@ private fun LandscapeTwitchMessage(
       ) {
         StitchMessagesContent(
           modifier = Modifier
-            .background(color = ChatTheme.colors.appBackground)
+            .background(color = ChatTheme.colors.backgroundCoreApp)
             .weight(0.88f)
             .padding(start = 6.dp, top = 6.dp, end = 6.dp, bottom = it.calculateBottomPadding()),
           state = state,
@@ -221,15 +226,30 @@ private fun StitchMessagesContent(
   state: MessagesLazyListState,
   listViewModel: MessageListViewModel
 ) {
-  MessageList(
-    modifier = modifier
-      .fillMaxSize()
-      .background(color = ChatTheme.colors.appBackground),
-    viewModel = listViewModel,
-    messagesLazyListState = state
+  CompositionLocalProvider(
+    LocalComponentFactory provides TwitchMessageListComponentFactory
   ) {
-    if (it is MessageItemState) {
-      TwitchMessageItem(messageItemState = it)
+    MessageList(
+      modifier = modifier
+        .fillMaxSize()
+        .background(color = ChatTheme.colors.backgroundCoreApp),
+      viewModel = listViewModel,
+      messagesLazyListState = state
+    )
+  }
+}
+
+/**
+ * Stream Chat Compose 7 customizes message list items through a [ChatComponentFactory]
+ * instead of the item content slot on [MessageList]. Only messages are drawn, as before.
+ */
+private object TwitchMessageListComponentFactory : ChatComponentFactory {
+
+  @Composable
+  override fun LazyItemScope.MessageItem(params: MessageItemParams) {
+    val messageItemState = params.messageListItem
+    if (messageItemState is MessageItemState) {
+      TwitchMessageItem(messageItemState = messageItemState)
     }
   }
 }

@@ -82,16 +82,16 @@ fun ChannelDescription(
     ) {
       Text(
         text = channel.streamerName.orEmpty(),
-        style = ChatTheme.typography.bodyBold,
+        style = ChatTheme.typography.bodyEmphasis,
         fontSize = 13.sp,
-        color = ChatTheme.colors.textHighEmphasis
+        color = ChatTheme.colors.textPrimary
       )
 
       Text(
         text = channel.description.orEmpty(),
-        style = ChatTheme.typography.body,
+        style = ChatTheme.typography.bodyDefault,
         fontSize = 11.sp,
-        color = ChatTheme.colors.textLowEmphasis
+        color = ChatTheme.colors.textSecondary
       )
     }
 
@@ -109,7 +109,7 @@ fun ChannelDescription(
       )
       Text(
         text = stringResource(id = R.string.follow),
-        style = ChatTheme.typography.bodyBold,
+        style = ChatTheme.typography.bodyEmphasis,
         color = Color.White
       )
     }

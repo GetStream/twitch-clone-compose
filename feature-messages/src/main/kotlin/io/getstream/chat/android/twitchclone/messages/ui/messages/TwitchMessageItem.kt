@@ -67,7 +67,7 @@ fun TwitchMessageItem(
   Text(
     modifier = modifier.padding(vertical = 2.dp),
     text = previewText,
-    color = ChatTheme.colors.textHighEmphasis,
+    color = ChatTheme.colors.textPrimary,
     inlineContent = badgesContent + inline
   )
 }

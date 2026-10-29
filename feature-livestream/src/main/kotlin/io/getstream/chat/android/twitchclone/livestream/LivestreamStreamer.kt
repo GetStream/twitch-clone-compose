@@ -128,12 +128,12 @@ private fun LivestreamStreamerContent(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(ChatTheme.colors.appBackground)
+          .background(ChatTheme.colors.backgroundCoreApp)
       ) {
         Text(
           modifier = Modifier.align(Alignment.Center),
           text = stringResource(id = R.string.livestream_joining_failed),
-          color = ChatTheme.colors.textHighEmphasis,
+          color = ChatTheme.colors.textPrimary,
           fontSize = 12.sp
         )
       }
@@ -143,7 +143,7 @@ private fun LivestreamStreamerContent(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(ChatTheme.colors.appBackground)
+          .background(ChatTheme.colors.backgroundCoreApp)
       ) {
         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
       }
@@ -169,10 +169,10 @@ private fun StreamRenderer(
 
   Scaffold(
     modifier = modifier
-      .background(ChatTheme.colors.appBackground)
+      .background(ChatTheme.colors.backgroundCoreApp)
       .padding(6.dp),
-    contentColor = ChatTheme.colors.appBackground,
-    backgroundColor = ChatTheme.colors.appBackground,
+    contentColor = ChatTheme.colors.backgroundCoreApp,
+    backgroundColor = ChatTheme.colors.backgroundCoreApp,
     topBar = {
       Box(modifier = Modifier.fillMaxWidth()) {
         StreamerInformation(
@@ -184,8 +184,8 @@ private fun StreamRenderer(
         Button(
           modifier = Modifier.align(Alignment.TopEnd),
           colors = ButtonDefaults.buttonColors(
-            contentColor = ChatTheme.colors.primaryAccent,
-            backgroundColor = ChatTheme.colors.primaryAccent
+            contentColor = ChatTheme.colors.accentPrimary,
+            backgroundColor = ChatTheme.colors.accentPrimary
           ),
           onClick = {
             scope.launch {
@@ -230,7 +230,7 @@ private fun StreamRenderer(
             } else {
               stringResource(id = R.string.livestream_go_backstage)
             },
-            color = ChatTheme.colors.textHighEmphasis
+            color = ChatTheme.colors.textPrimary
           )
         }
       }
@@ -247,14 +247,14 @@ private fun StreamRenderer(
           Snackbar {
             Text(
               text = stringResource(id = R.string.livestream_backstage),
-              color = ChatTheme.colors.textHighEmphasis
+              color = ChatTheme.colors.textPrimary
             )
           }
         }
       } else if (connection is RealtimeConnection.Failed) {
         Text(
           text = "Connection failed",
-          color = ChatTheme.colors.textHighEmphasis
+          color = ChatTheme.colors.textPrimary
         )
       }
     }

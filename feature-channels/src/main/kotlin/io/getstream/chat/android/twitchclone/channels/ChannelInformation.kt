@@ -63,7 +63,7 @@ fun ChannelInformation(
         text = channelDescription,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        color = ChatTheme.colors.textHighEmphasis,
+        color = ChatTheme.colors.textPrimary,
         fontSize = 12.sp
       )
     }
@@ -79,7 +79,7 @@ fun ChannelInformation(
           Text(
             modifier = Modifier
               .background(
-                color = ChatTheme.colors.primaryAccent,
+                color = ChatTheme.colors.accentPrimary,
                 shape = RoundedCornerShape(16.dp)
               )
               .padding(horizontal = 6.dp, vertical = 3.dp),

@@ -101,12 +101,12 @@ private fun LivestreamWatcherContent(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(ChatTheme.colors.appBackground)
+          .background(ChatTheme.colors.backgroundCoreApp)
       ) {
         Text(
           modifier = Modifier.align(Alignment.Center),
           text = stringResource(id = R.string.livestream_joining_failed),
-          color = ChatTheme.colors.textHighEmphasis,
+          color = ChatTheme.colors.textPrimary,
           fontSize = 12.sp
         )
       }
@@ -116,7 +116,7 @@ private fun LivestreamWatcherContent(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(ChatTheme.colors.appBackground)
+          .background(ChatTheme.colors.backgroundCoreApp)
       ) {
         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
       }

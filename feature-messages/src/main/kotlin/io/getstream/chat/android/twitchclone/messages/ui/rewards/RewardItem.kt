@@ -86,7 +86,7 @@ fun RewardItem(
           modifier = Modifier
             .padding(8.dp)
             .height(IntrinsicSize.Min),
-          color = ChatTheme.colors.overlay,
+          color = ChatTheme.colors.backgroundCoreScrim,
           shape = RoundedCornerShape(5.dp)
         ) {
           Row(
@@ -104,7 +104,7 @@ fun RewardItem(
               modifier = Modifier
                 .padding(2.dp),
               text = reward.tokenAmount.toString(),
-              style = ChatTheme.typography.bodyBold,
+              style = ChatTheme.typography.bodyEmphasis,
               fontSize = 12.sp,
               color = Color.White
             )
@@ -120,7 +120,7 @@ fun RewardItem(
       text = reward.name,
       fontSize = 12.sp,
       textAlign = TextAlign.Center,
-      color = ChatTheme.colors.textHighEmphasis
+      color = ChatTheme.colors.textPrimary
     )
   }
 }

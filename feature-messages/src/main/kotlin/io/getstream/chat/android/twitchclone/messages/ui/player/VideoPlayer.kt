@@ -61,14 +61,14 @@ fun BoxScope.VideoPlayer(videoUrl: String?) {
   AndroidView(
     modifier = Modifier
       .fillMaxSize()
-      .background(ChatTheme.colors.appBackground),
+      .background(ChatTheme.colors.backgroundCoreApp),
     factory = { videoView }
   )
 
   if (!prepared) {
     CircularProgressIndicator(
       modifier = Modifier.align(Alignment.Center),
-      color = ChatTheme.colors.primaryAccent
+      color = ChatTheme.colors.accentPrimary
     )
   }
 }

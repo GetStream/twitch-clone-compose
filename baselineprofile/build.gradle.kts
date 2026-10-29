@@ -16,10 +16,6 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
 
-  kotlinOptions {
-    jvmTarget = libs.versions.jvmTarget.get()
-  }
-
   defaultConfig {
     minSdk = 24
     targetSdk = Configuration.targetSdk
@@ -63,4 +59,10 @@ dependencies {
   implementation(libs.androidx.test.uiautomator)
   implementation(libs.androidx.benchmark.macro)
   implementation(libs.androidx.profileinstaller)
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.jvmTarget.get()))
+  }
 }
